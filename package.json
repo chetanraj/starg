@@ -24,5 +24,8 @@
   "license": "MIT",
   "devDependencies": {
     "xo": "^0.17.1"
+  },
+  "scripts": {
+    "test": "xo app.js"
   }
 }
