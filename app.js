@@ -1,6 +1,6 @@
 'use strict';
 
-const GitHubApi = require("github");
+const GitHubApi = require('github');
 const loading = require('loading-indicator');
 const presets = require('loading-indicator/presets');
 const meow = require('meow');
@@ -10,83 +10,85 @@ const inquirer = require('inquirer');
 
 const cli = meow();
 const username = cli.input[0];
-
 const log = console.log;
+let loadingIndicator;
+let starredRepos = [];
 
-if(!username) {
-    log('Please specify a valid GitHub username ' + emoji.get('disappointed_relieved'));
-    return;
-}
-
-let loading_indicator = loading.start(null, {
-    frames: presets.dots
+loadingIndicator = loading.start(null, {
+	frames: presets.dots
 });
 
 const customheaders = {
-    "User-Agent": "starg"
+	'User-Agent': 'starg'
 };
 
 const github = new GitHubApi({
-    protocol: "https",
-    host: "api.github.com",
-    headers: customheaders
+	protocol: 'https',
+	host: 'api.github.com',
+	headers: customheaders
 });
 
-var questions = [
-  {
-    type: 'list',
-    name: 'openrepo',
-    message: 'Do you want to open the repo in browser ?',
-    choices: [
-      {
-        name: 'yes'
-      },
-      {
-        name: 'no'
-      }
-    ]
-  }
+let questions = [
+	{
+		type: 'list',
+		name: 'openrepo',
+		message: 'Do you want to open the repo in browser ?',
+		choices: [
+			{
+				name: 'yes'
+			},
+			{
+				name: 'no'
+			}
+		]
+	}
 ];
 
-let starredRepos = [];
+if (username === undefined) {
+	loading.stop(loadingIndicator);
+	log('Please specify a valid GitHub username ' + emoji.get('disappointed_relieved'));
+} else {
+	github.activity.getStarredReposForUser({
+		username: username
+	}, function (error, res) {
+		if (error) {
+			console.error(error);
+		}
 
-github.activity.getStarredReposForUser({
-    username: username
-}, function(error, res) {
-    if(error) {
-      console.error(error);
-    }
+		starredRepos = starredRepos.concat(res);
 
-    starredRepos = starredRepos.concat(res);
-
-    if (github.hasNextPage(res)) {
-        getNextPage(res);
-    }
-});
+		if (github.hasNextPage(res)) {
+			getNextPage(res);
+		}
+	});
+}
 
 function getNextPage(res) {
-  github.getNextPage(res, customheaders, function(err, res) {
-      starredRepos = starredRepos.concat(res);
-      if (github.hasNextPage(res)) {
-          getNextPage(res);
-      } else {
-          loading.stop(loading_indicator);
+	github.getNextPage(res, customheaders, function (err, res) {
+		if (err) {
+			console.error('error :: ' + err);
+		}
 
-          printOneRandomStarredRepo();
-      }
-  });
+		starredRepos = starredRepos.concat(res);
+		if (github.hasNextPage(res)) {
+			getNextPage(res);
+		} else {
+			loading.stop(loadingIndicator);
+			printOneRandomStarredRepo();
+		}
+	});
 }
 
 function printOneRandomStarredRepo() {
-  let min = 0,
-      max = starredRepos.length,
-      random = Math.floor(Math.random() * (max - min)) + min;
+	let min = 0;
+	let	max = starredRepos.length;
+	let	random = Math.floor(Math.random() * (max - min)) + min;
 
-  log(emoji.get('star') + '   ' + chalk.inverse(starredRepos[random].full_name));
-  log('    description : ' + starredRepos[random].description);
-  inquirer.prompt(questions).then(function (answers) {
-    if(answers.openrepo == 'yes') {
-      require('openurl').open(starredRepos[random].html_url)
-    }
-  });
+	log(emoji.get('star') + '   ' + chalk.inverse(starredRepos[random].full_name));
+	log('    description : ' + starredRepos[random].description);
+	inquirer.prompt(questions).then(function (answers) {
+		if (answers.openrepo === 'yes') {
+			require('openurl').open(starredRepos[random].html_url);
+		}
+	});
 }

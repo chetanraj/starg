@@ -1,6 +1,6 @@
 {
   "name": "starg",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "get a random repo which you've starred a while ago",
   "main": "app.js",
   "bin": {
@@ -8,15 +8,21 @@
   },
   "dependencies": {
     "chalk": "^1.1.3",
-    "commander": "^2.9.0",
-    "get-stdin": "^5.0.1",
-    "github": "^7.3.1",
+    "github": "^7.3.2",
     "inquirer": "^2.0.0",
     "loading-indicator": "^2.0.0",
     "meow": "^3.7.0",
     "node-emoji": "^1.5.0",
     "openurl": "^1.1.1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chetanraj/starg.git"
+  },
+  "homepage": "https://github.com/chetanraj/starg#readme",
   "author": "Chetan Raj<chetan.narian@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "xo": "^0.17.1"
+  }
 }
