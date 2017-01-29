@@ -1,6 +1,6 @@
 {
   "name": "starg",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "get a random repo which you've starred a while ago",
   "main": "app.js",
   "bin": {
