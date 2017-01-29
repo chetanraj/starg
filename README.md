@@ -18,7 +18,7 @@ starg github_username
 
 ### Terminal Output
 
-<img src="media/screenshot.png" />
+<img src="https://raw.githubusercontent.com/chetanraj/starg/master/media/screenshot.png" />
 
 
 ### Contributions
