@@ -22,6 +22,7 @@
   "homepage": "https://github.com/chetanraj/starg#readme",
   "author": "Chetan Raj<chetan.narian@gmail.com>",
   "license": "MIT",
+  "reveal":"true",
   "devDependencies": {
     "xo": "^0.17.1"
   },
