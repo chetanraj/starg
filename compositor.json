@@ -1,0 +1,95 @@
+{
+  "name": "chetanraj/starg",
+  "version": "0.1.4",
+  "libraries": {
+    "xv": "^1.1.25"
+  },
+  "title": "starg",
+  "branch": "master",
+  "style": {
+    "name": "Brutalist",
+    "componentSet": {
+      "nav": "nav/BasicNav",
+      "header": "header/BasicHeader",
+      "article": "article/MarkdownArticle",
+      "footer": "footer/BasicFooter"
+    },
+    "fontFamily": "Consolas, \"Liberation Mono\", Menlo, Courier, monospace",
+    "heading": {},
+    "typeScale": [
+      48,
+      32,
+      20,
+      18,
+      16,
+      14,
+      12
+    ],
+    "layout": {
+      "maxWidth": 1024,
+      "fluid": true
+    },
+    "colors": {
+      "text": "#333",
+      "background": "#fff",
+      "primary": "#666",
+      "secondary": "#888",
+      "highlight": "#1f80ff",
+      "muted": "#f6f6f6",
+      "border": "#eee"
+    }
+  },
+  "content": [
+    {
+      "component": "nav",
+      "links": [
+        {
+          "href": "https://github.com/chetanraj/starg",
+          "text": "GitHub"
+        },
+        {
+          "href": "https://npmjs.com/package/starg",
+          "text": "npm"
+        }
+      ]
+    },
+    {
+      "component": "header",
+      "heading": "starg",
+      "subhead": "Get one random repo from your Starred Repos",
+      "children": [
+        {
+          "component": "ui/TweetButton",
+          "text": "starg: Get one random repo from your Starred Repos",
+          "url": null
+        },
+        {
+          "component": "ui/GithubButton",
+          "user": "chetanraj",
+          "repo": "starg"
+        }
+      ],
+      "text": "v1.5.0"
+    },
+    {
+      "component": "article",
+      "metadata": {
+        "source": "github.readme"
+      },
+      "html": "\n\n<p><a href=\"https://circleci.com/gh/chetanraj/starg\"><img src=\"https://circleci.com/gh/chetanraj/starg.svg?style=svg\"></a> <a href=\"https://badge.fury.io/js/starg\"><img src=\"https://badge.fury.io/js/starg.svg\"></a> <a href=\"https://www.bithound.io/github/chetanraj/starg\"><img src=\"https://www.bithound.io/github/chetanraj/starg/badges/score.svg\"></a> <a href=\"https://github.com/chetanraj/starg\"><img src=\"https://david-dm.org/chetanraj/starg.svg\"></a></p>\n<h3>How to install</h3>\n<pre>npm i -g starg | yarn global add starg</pre><h4>How to use</h4>\n<pre>starg github_username</pre><h3>Terminal Output</h3>\n<p><img src=\"https://raw.githubusercontent.com/chetanraj/starg/master/media/screenshot.png\"></p>\n<h3>Contributions</h3>\n<h3>TODO</h3>\n"
+    },
+    {
+      "component": "footer",
+      "links": [
+        {
+          "href": "https://github.com/chetanraj/starg",
+          "text": "GitHub"
+        },
+        {
+          "href": "https://github.com/chetanraj",
+          "text": "chetanraj"
+        }
+      ]
+    }
+  ]
+}
