@@ -6,6 +6,7 @@ const emoji = require('node-emoji');
 const chalk = require('chalk');
 const ora = require('ora');
 const inquirer = require('inquirer');
+
 const cli = meow();
 
 const username = cli.input[0];
