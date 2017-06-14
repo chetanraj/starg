@@ -16,10 +16,9 @@ npm i -g starg | yarn global add starg
 starg github_username
 ```
 
-### Terminal Output
+### Terminal Recording
 
-<img src="https://raw.githubusercontent.com/chetanraj/starg/master/media/screenshot.png" />
-
+[![asciicast](https://asciinema.org/a/a4dmpr7kcr8wwcn7wln1lx5be.png)](https://asciinema.org/a/a4dmpr7kcr8wwcn7wln1lx5be)
 
 ### Contributions
 
