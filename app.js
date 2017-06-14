@@ -1,22 +1,20 @@
 'use strict';
 
 const GitHubApi = require('github');
-const loading = require('loading-indicator');
-const presets = require('loading-indicator/presets');
 const meow = require('meow');
 const emoji = require('node-emoji');
 const chalk = require('chalk');
+const ora = require('ora');
 const inquirer = require('inquirer');
-
 const cli = meow();
+
 const username = cli.input[0];
 const log = console.log;
 let loadingIndicator;
 let starredRepos = [];
 
-loadingIndicator = loading.start(null, {
-	frames: presets.dots
-});
+loadingIndicator = ora('Fetching the stars ').start();
+loadingIndicator.color = 'yellow';
 
 const customheaders = {
 	'User-Agent': 'starg'
@@ -45,7 +43,7 @@ let questions = [
 ];
 
 if (username === undefined) {
-	loading.stop(loadingIndicator);
+	loadingIndicator.succeed('Done.');
 	log('Please specify a valid GitHub username ' + emoji.get('disappointed_relieved'));
 } else {
 	github.activity.getStarredReposForUser({
@@ -73,7 +71,7 @@ function getNextPage(res) {
 		if (github.hasNextPage(res)) {
 			getNextPage(res);
 		} else {
-			loading.stop(loadingIndicator);
+			loadingIndicator.succeed('Done.');
 			printOneRandomStarredRepo();
 		}
 	});
